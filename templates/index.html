@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" href="#">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css"
+              integrity="sha512-f8mUMCRNrJxPBDzPJx3n+Y5TC5xp6SmStstEfgsDXZJTcxBakoB5hvPLhAfJKa9rCvH+n3xpJ2vQByxLk4WP2g=="
+              crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+        <title>Brazilian rural/urban population</title>
+    </head>
+    <body>
+        <!-- Navbar links -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+           <a class="navbar-brand" href="#">Brazilian rural/urban population</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                  aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="https://www.udacity.com">Udacity</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://data.worldbank.org/">World Bank Data</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <!-- Text -->
+        <div id="text-title" class="container mt-3 text-center">
+            <h1>Webpage with Dashboards of the distribution of the Brazilian population in rural and urban
+                from 2000 to 2019.</h1>
+        </div>
+        <!-- Plots positions -->
+        <div id="charts" class="container mt-3 text-center">
+            <div class="row">
+                <div class="col-6">
+                    <div id="{{ids[0]}}"></div>
+                </div>
+                <div class="col-6">
+                    <div id="{{ids[1]}}"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div id="{{ids[2]}}"></div>
+                </div>
+                <div class="col-6">
+                    <div id="{{ids[3]}}"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-copyright text-center py-3 fixed-bottom">
+            <a class="btn btn-social-icon btn-github" href="https://github.com/leosimoes" target="_blank">
+                <span class="fa fa-github"></span>
+            </a>
+
+            <a class="btn btn-social-icon btn-linkedin" href="https://www.linkedin.com/in/leosimoes93/" target="_blank">
+                <span class="fa fa-linkedin"></span>
+            </a>
+
+            <p>&copy; 2021 Leonardo Simões</p>
+        </div>
+
+        <!-- Plots generation -->
+        <script type="text/javascript">
+            const figures = {{figuresJSON | safe}};
+            const ids = {{ids | safe}};
+            for(let i in figures) {
+                Plotly.plot(ids[i],
+                    figures[i].data,
+                    figures[i].layout || {});
+            }
+        </script>
+
+    </body>
+</html>
